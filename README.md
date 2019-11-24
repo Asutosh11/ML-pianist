@@ -1,4 +1,4 @@
-An experiment with generating music using Tensorflow/Keras.
+<b>An experiment with generating music using Tensorflow/Keras</b>
 
 For those who are wondering, what exactly machine learning is, its basically a set of mathematical formulae/techniques
 where you train an anlgorithm to establish a relationship between input and output data or when given a lot of input data, 
