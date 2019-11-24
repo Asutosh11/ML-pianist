@@ -20,7 +20,7 @@ import numpy as np
 # In[5]:
 
 
-mid_train = MidiFile('midi_tracks/piano_sonata_310_1_(c)oguri.mid') 
+mid_train = MidiFile('piano_sonata_310_1_(c)oguri.mid') 
 notes = []
 
 notes = []
@@ -79,7 +79,7 @@ model.fit(np.array(X), np.array(y), 16, 20, verbose=1, callbacks=[model_save_cal
 # In[25]:
 
 
-mid_compose = MidiFile('midi_tracks/mozart_25_1st_orch.mid') 
+mid_compose = MidiFile('mozart_25_1st_orch.mid') 
 notes_compose = []
 for msg in mid_compose:
     if not msg.is_meta and msg.channel == 0 and msg.type == 'note_on':
