@@ -1,10 +1,10 @@
 An experiment with generating music using Tensorflow/Keras.
 
-For those who don't know what exactly is machine learning, its basically a set of mathematical formulae/techniques
-where you train anlgorithm to establish a relationship between input and output data or given a lot of input data, 
-it creates gropus of similar data. 
+For those who are wondering, what exactly machine learning is, its basically a set of mathematical formulae/techniques
+where you train an anlgorithm to establish a relationship between input and output data or when given a lot of input data, 
+it creates gropus of similar data. You either predict something given an input data or classify data into groups.
 
-Some examples of these mathematical techniques are Linear Regression, SVM, Decision Trees, 
+Some examples of these mathematical techniques are Linear Regression, SVM, Decision Trees, etc, 
 
 Another hot stuff is Deep Learning. Deep Learning is a subset of machine learning. The way it differs from traditional
 Machine Learning techniques is, Deep Learning algorithms are designed as per human brain and are called Neural Networks.
