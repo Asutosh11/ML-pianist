@@ -1,10 +1,5 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
 # pip install tensorflow-gpu keras sklearn mido
+# Total training and music generation time is around 3 hours but paramater tuning took another 3 hrs
 
 import mido
 from mido import MidiFile, MidiTrack, Message
@@ -16,18 +11,20 @@ from keras.callbacks import ModelCheckpoint
 from sklearn.preprocessing import MinMaxScaler
 import numpy as np
 
-
-# In[5]:
-
+# for training, I have choosen a track by mozart
 
 mid_train = MidiFile('piano_sonata_310_1_(c)oguri.mid') 
 notes = []
+
+# read the .mid file and start converting to computer readable notes
 
 notes = []
 for msg in mid_train:
     if not msg.is_meta and msg.channel == 0 and msg.type == 'note_on':
         data = msg.bytes()
         notes.append(data[1])
+        
+# reshape the data        
         
 scaler = MinMaxScaler(feature_range=(0,1))
 scaler.fit(np.array(notes).reshape(-1,1))
@@ -42,10 +39,8 @@ for i in range(len(notes)-n_prev):
     X.append(notes[i:i+n_prev])
     y.append(notes[i+n_prev])
 
-
-# In[6]:
-
-
+# let's build the neural network
+    
 model = Sequential()
 
 model.add(LSTM(256, input_shape=(n_prev, 1), return_sequences=True))
@@ -68,16 +63,17 @@ model.add(Dropout(0.3))
 
 model.add(Dense(1))
 
+# choose between softmax or relu
 model.add(Activation('softmax'))
 optimizer = Adam(lr=0.001)
 
+# select the loss function and compile
 model.compile(loss='mse', optimizer=optimizer)
 
-model.fit(np.array(X), np.array(y), 16, 20, verbose=1, callbacks=[model_save_callback])
+model.fit(np.array(X), np.array(y), 16, 200, verbose=1, callbacks=[model_save_callback])
 
-
-# In[25]:
-
+# We take a very small amount of initial notes of another track by mozart and 
+# let the trained RNN guess the majority of the sequence to build a new track
 
 mid_compose = MidiFile('mozart_25_1st_orch.mid') 
 notes_compose = []
@@ -106,9 +102,6 @@ prediction = [int(i) for i in prediction]
 
 # #### We have to save the generated sequence to a .mid file which can be converted to an mp3 easily
 
-# In[26]:
-
-
 mid_compose = MidiFile()
 track = MidiTrack()
 t = 0
@@ -121,4 +114,6 @@ for note in prediction:
     track.append(msg)
 mid_compose.tracks.append(track)
 mid_compose.save('generated_music.mid')
+
+# most of the music players cannot play .mid files by default. Either you have to install a plugin or convert to mp3
 
