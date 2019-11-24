@@ -16,5 +16,5 @@ every output is dependant on a series of previous inputs and not just last one v
 For example, every musical note is preceeded by a series of notes. The price of a stock fo any company follows a trend 
 that is preceeded by a series of stock prices, etc
 
-I have implemented this using Temsorflow/Keras. The reason is Tensorflow offers a bridge to convert the models to tflite 
-format, to run your models on Android/iOS and I would be needing that for deploying this on an Android device. 
+I have implemented this using Temsorflow/Keras Deep Learning framework. 
+The reason is Tensorflow offers a bridge to convert the models to tflite format, to run your models on Android/iOS as well and I would be needing that for deploying this on an Android device. 
