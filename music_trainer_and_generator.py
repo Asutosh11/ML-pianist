@@ -1,8 +1,6 @@
 # pip install tensorflow-gpu keras sklearn mido
 # Total training and music generation time is around 3 hours but paramater tuning took another 3 hrs
 
-import mido
-from mido import MidiFile, MidiTrack, Message
 from keras.layers import LSTM, Dense, Activation, Dropout, Flatten
 from keras.preprocessing import sequence
 from keras.models import Sequential
@@ -10,6 +8,8 @@ from keras.optimizers import Adam
 from keras.callbacks import ModelCheckpoint
 from sklearn.preprocessing import MinMaxScaler
 import numpy as np
+import mido
+from mido import MidiFile, MidiTrack, Message
 
 # for training, I have choosen a track by mozart
 
@@ -72,7 +72,6 @@ model.compile(loss='mse', optimizer=optimizer)
 
 model.fit(np.array(X), np.array(y), 16, 200, verbose=1, callbacks=[model_save_callback])
 
-# We take a very small amount of initial notes of another track by mozart and 
 # let the trained RNN guess the majority of the sequence to build a new track
 
 mid_compose = MidiFile('mozart_25_1st_orch.mid') 
@@ -100,7 +99,7 @@ prediction = np.squeeze(scaler.inverse_transform(prediction.reshape(-1,1)))
 prediction = [int(i) for i in prediction]
 
 
-# #### We have to save the generated sequence to a .mid file which can be converted to an mp3 easily
+# We have to save the generated sequence to a .mid file which can be converted to an mp3 easily
 
 mid_compose = MidiFile()
 track = MidiTrack()
