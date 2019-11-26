@@ -1,5 +1,4 @@
 # pip install tensorflow-gpu keras sklearn mido
-# Total training and music generation time is around 3 hours but paramater tuning took another 3 hrs
 
 from keras.layers import LSTM, Dense, Activation, Dropout, Flatten
 from keras.preprocessing import sequence
@@ -70,7 +69,7 @@ optimizer = Adam(lr=0.001)
 # select the loss function and compile
 model.compile(loss='mse', optimizer=optimizer)
 
-model.fit(np.array(X), np.array(y), 16, 200, verbose=1, callbacks=[model_save_callback])
+model.fit(np.array(X), np.array(y), 16, 200, verbose=1, callbacks=None, shuffle=True)
 
 # let the trained RNN guess the majority of the sequence to build a new track
 
