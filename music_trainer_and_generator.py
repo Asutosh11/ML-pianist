@@ -38,7 +38,7 @@ for i in range(len(notes)-n_prev):
     X.append(notes[i:i+n_prev])
     y.append(notes[i+n_prev])
 
-# let's build the neural network
+# let's build the neural network, experiment with the hidden layer here
     
 model = Sequential()
 
