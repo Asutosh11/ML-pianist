@@ -45,19 +45,10 @@ model = Sequential()
 model.add(LSTM(256, input_shape=(n_prev, 1), return_sequences=True))
 model.add(Dropout(0.3))
 
-model.add(LSTM(256, input_shape=(n_prev, 1), return_sequences=True))
+model.add(LSTM(128, input_shape=(n_prev, 1), return_sequences=True))
 model.add(Dropout(0.3))
 
-model.add(LSTM(256, input_shape=(n_prev, 1), return_sequences=True))
-model.add(Dropout(0.3))
-
-model.add(LSTM(256, input_shape=(n_prev, 1), return_sequences=True))
-model.add(Dropout(0.3))
-
-model.add(LSTM(256, input_shape=(n_prev, 1), return_sequences=True))
-model.add(Dropout(0.3))
-
-model.add(LSTM(256, input_shape=(n_prev, 1), return_sequences=False))
+model.add(LSTM(64, input_shape=(n_prev, 1), return_sequences=False))
 model.add(Dropout(0.3))
 
 model.add(Dense(1))
