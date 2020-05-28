@@ -5,5 +5,5 @@
 <img src = "https://raw.githubusercontent.com/Asutosh11/ML-pianist/master/ml-pianist-image.PNG">
 </a>
 
-<br>
-<p>Clone this repo and start generating your own piano tracks using Tensorflow</p>
+<br><br>
+Clone this repo and start generating your own piano tracks using Tensorflow
